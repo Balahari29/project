@@ -1,0 +1,361 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+class AuraApp{
+public void japaneselesson(){
+System.out.println("konnichi ha                   - hello");
+System.out.println("ohayo                         - Good morning");
+System.out.println("anata no namae ha nani desu ka- What is your name?");
+System.out.println("aishitemasu                   - I  Love You");
+System.out.println("dekimsuka                     - Is it possible");
+System.out.println("jodandayo                     - I am just kidding");
+System.out.println("genkidesu ka?                 - How are you?");
+System.out.println("watashi wa genkidesu          - I am fine ");
+System.out.println("arigato                       - Thankyou");
+System.out.println("sayonara                      - Goodbye");
+}
+public void spanishlesson(){
+System.out.println("Hola           - Hello");
+System.out.println("buen día       - Good morning");
+System.out.println("cómo te llamas - What is your name");
+System.out.println("te amo         - I Love You");
+System.out.println("Es posible     - Is it possible");
+System.out.println("sólo bromeaba  - I am just kidding");
+System.out.println("Cómo estás     - How are you");
+System.out.println("estoy bien     - I am fine");
+System.out.println("gracias        - Thank You");
+System.out.println("adiós          - GoodBye");
+}
+public void frenchlesson(){
+System.out.println("Bonjour          - Hello, good morning");
+System.out.println("quel est ton nom - What is your name");
+System.out.println("Je t'aime        - I Love You");
+System.out.println("Est-il possible  - Is it possible");
+System.out.println("Je plaisante     - I am just kidding");
+System.out.println("comment vas-tu ? - How are you");
+System.out.println("je vais bien     - I am fine");
+System.out.println("merci            - Thank You");
+System.out.println("au revoir        - GoodBye");
+
+}
+public void japanesequizz(){
+        Map<String, Map<String, String>> languageCategories = new HashMap<>();
+
+        Map<String, String> japaneseQuestions = new HashMap<>();
+        japaneseQuestions.put("What is 'Good morning' in japanese?", "ohayo");
+japaneseQuestions.put("What is 'hello' in japanese?", "konnichi ha");
+        japaneseQuestions.put("What is 'goodbye' in japanese?", "sayonara");
+        languageCategories.put("japanese", japaneseQuestions);
+
+     
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Language Learning App!");
+
+        int totalQuestions = 0;
+        int correctAnswers = 0;
+        int totalScore = 0;
+
+        for (Map.Entry<String, Map<String, String>> category : languageCategories.entrySet()) {
+            System.out.println("\nCategory: " + category.getKey());
+            Map<String, String> questionsAndAnswers = category.getValue();
+
+            for (Map.Entry<String, String> entry : questionsAndAnswers.entrySet()) {
+                totalQuestions++;
+
+                System.out.println("Question: " + entry.getKey());
+                long startTime = System.currentTimeMillis();
+
+                String userAnswer = scanner.nextLine();
+
+                long endTime = System.currentTimeMillis();
+                long elapsedTime = TimeUnit.MILLISECONDS.toSeconds(endTime - startTime);
+
+                if (userAnswer.equalsIgnoreCase(entry.getValue())) {
+                    System.out.println("Correct! You answered in " + elapsedTime + " seconds.");
+                    int score = calculateScore(elapsedTime);
+                    correctAnswers++;
+                    totalScore += score;
+                } else {
+                    System.out.println("what a failure. The correct answer is: " + entry.getValue());
+                }
+            }
+        }
+
+        System.out.println("\nCongratulations! You've completed the language learning quiz.");
+        System.out.println("Your score: " + totalScore + " points");
+        System.out.println("You answered " + correctAnswers + " out of " + totalQuestions + " questions correctly.");
+
+        // Option to retry incorrect questions
+     System.out.println("\nDo you want to retry the questions? (yes/no)");
+        String retryOption = scanner.nextLine();
+
+        if (retryOption.equalsIgnoreCase("yes")) {
+            retryIncorrectQuestions(languageCategories, scanner);
+        }
+    }
+
+    private static int calculateScore(long elapsedTime) {
+        // You can customize the scoring logic based on response time, etc.
+        return 10;
+    }
+
+    private static void retryIncorrectQuestions(Map<String, Map<String, String>> languageCategories, Scanner scanner) {
+        System.out.println("\nRetrying incorrect questions...");
+
+        for (Map.Entry<String, Map<String, String>> category : languageCategories.entrySet()) {
+            Map<String, String> questionsAndAnswers = category.getValue();
+
+            for (Map.Entry<String, String> entry : questionsAndAnswers.entrySet()) {
+                System.out.println("Question: " + entry.getKey());
+                String userAnswer = scanner.nextLine();
+
+                if (userAnswer.equalsIgnoreCase(entry.getValue())) {
+                    System.out.println("Correct! Great job!");
+                } else {
+                    System.out.println("what a failure. The correct answer is: " + entry.getValue());
+                }
+}
+}        
+
+}
+public void spanishquizz(){
+ Map<String, Map<String, String>> languageCategories = new HashMap<>();
+
+        Map<String, String> spanishQuestions = new HashMap<>();
+        spanishQuestions.put("What is 'Hello' in Spanish?", "Hola");
+        spanishQuestions.put("What is 'Goodbye' in Spanish?", "Adios");
+        spanishQuestions.put("What is 'I love you' in Spanish?", "te amo");
+        languageCategories.put("Spanish", spanishQuestions);
+
+     
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Language Learning App!");
+
+        int totalQuestions = 0;
+        int correctAnswers = 0;
+        int totalScore = 0;
+
+        for (Map.Entry<String, Map<String, String>> category : languageCategories.entrySet()) {
+            System.out.println("\nCategory: " + category.getKey());
+            Map<String, String> questionsAndAnswers = category.getValue();
+
+            for (Map.Entry<String, String> entry : questionsAndAnswers.entrySet()) {
+                totalQuestions++;
+
+                System.out.println("Question: " + entry.getKey());
+                long startTime = System.currentTimeMillis();
+
+                String userAnswer = scanner.nextLine();
+
+                long endTime = System.currentTimeMillis();
+                long elapsedTime = TimeUnit.MILLISECONDS.toSeconds(endTime - startTime);
+
+                if (userAnswer.equalsIgnoreCase(entry.getValue())) {
+                    System.out.println("Correct! You answered in " + elapsedTime + " seconds.");
+                    int score = calculateScore(elapsedTime);
+                    correctAnswers++;
+                    totalScore += score;
+                } else {
+                    System.out.println("what a failure. The correct answer is: " + entry.getValue());
+                }
+            }
+        }
+
+        System.out.println("\nCongratulations! You've completed the language learning quiz.");
+        System.out.println("Your score: " + totalScore + " points");
+        System.out.println("You answered " + correctAnswers + " out of " + totalQuestions + " questions correctly.");
+
+        // Option to retry incorrect questions
+        System.out.println("\nDo you want to retry the questions? (yes/no)");
+        String retryOption = scanner.nextLine();
+
+        if (retryOption.equalsIgnoreCase("yes")) {
+            retryIncorrectQuestions(languageCategories, scanner);
+        }
+    }
+
+    private static int calculatescore(long elapsedTime) {
+        // You can customize the scoring logic based on response time, etc.
+        return 10;
+    }
+
+    private static void retryincorrectQuestions(Map<String, Map<String, String>> languageCategories, Scanner scanner) {
+        System.out.println("\nRetrying incorrect questions...");
+
+        for (Map.Entry<String, Map<String, String>> category : languageCategories.entrySet()) {
+            Map<String, String> questionsAndAnswers = category.getValue();
+
+            for (Map.Entry<String, String> entry : questionsAndAnswers.entrySet()) {
+                System.out.println("Question: " + entry.getKey());
+                String userAnswer = scanner.nextLine();
+
+                if (userAnswer.equalsIgnoreCase(entry.getValue())) {
+                    System.out.println("Correct! Great job!");
+                } else {
+                    System.out.println("Incorrect. The correct answer is: " + entry.getValue());
+                }
+            }
+        }
+    
+}
+public void frenchquizz(){
+System.out.println("hello");
+ Map<String, Map<String, String>> languageCategories = new HashMap<>();
+
+        Map<String, String> frenchQuestions = new HashMap<>();
+        frenchQuestions.put("What is 'Thank you' in French?", "Merci");
+frenchQuestions.put("What is 'hello' in French?", "Bonjour");
+        frenchQuestions.put("What is 'I am fine' in French?", "je vais bien");
+        languageCategories.put("French", frenchQuestions);
+
+     
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Language Learning App!");
+
+        int totalQuestions = 0;
+        int correctAnswers = 0;
+        int totalScore = 0;
+
+        for (Map.Entry<String, Map<String, String>> category : languageCategories.entrySet()) {
+            System.out.println("\nCategory: " + category.getKey());
+            Map<String, String> questionsAndAnswers = category.getValue();
+
+            for (Map.Entry<String, String> entry : questionsAndAnswers.entrySet()) {
+                totalQuestions++;
+
+                System.out.println("Question: " + entry.getKey());
+                long startTime = System.currentTimeMillis();
+
+                String userAnswer = scanner.nextLine();
+
+                long endTime = System.currentTimeMillis();
+                long elapsedTime = TimeUnit.MILLISECONDS.toSeconds(endTime - startTime);
+
+                if (userAnswer.equalsIgnoreCase(entry.getValue())) {
+                    System.out.println("Correct! You answered in " + elapsedTime + " seconds.");
+                    int score = calculateScore(elapsedTime);
+                    correctAnswers++;
+                    totalScore += score;
+                } else {
+                    System.out.println("what a failure. The correct answer is: " + entry.getValue());
+                }
+            }
+        }
+
+        System.out.println("\nCongratulations! You've completed the language learning quiz.");
+        System.out.println("Your score: " + totalScore + " points");
+        System.out.println("You answered " + correctAnswers + " out of " + totalQuestions + " questions correctly.");
+
+        // Option to retry incorrect questions
+        System.out.println("\nDo you want to retry the questions? (yes/no)");
+        String retryOption = scanner.nextLine();
+
+        if (retryOption.equalsIgnoreCase("yes")) {
+            retryIncorrectQuestions(languageCategories, scanner);
+        }
+    }
+
+    private static int CalculateScore(long elapsedTime) {
+        // You can customize the scoring logic based on response time, etc.
+        return 10;
+    }
+
+    private static void RetryIncorrectQuestions(Map<String, Map<String, String>> languageCategories, Scanner scanner) {
+        System.out.println("\nRetrying incorrect questions...");
+
+        for (Map.Entry<String, Map<String, String>> category : languageCategories.entrySet()) {
+            Map<String, String> questionsAndAnswers = category.getValue();
+
+            for (Map.Entry<String, String> entry : questionsAndAnswers.entrySet()) {
+                System.out.println("Question: " + entry.getKey());
+                String userAnswer = scanner.nextLine();
+
+                if (userAnswer.equalsIgnoreCase(entry.getValue())) {
+                    System.out.println("Correct! Great job!");
+                } else {
+                    System.out.println("what a failure. The correct answer is: " + entry.getValue());
+                }
+            }
+        }
+    
+}
+}
+class LanguageLearning extends AuraApp{
+public static void main(String args[]){
+AuraApp object= new AuraApp();
+System.out.println("WELCOME TO AURA LANGUAGE LEARNING APP");
+System.out.println("Enter your Name:");
+Scanner sc = new Scanner(System.in);
+String Name=sc.next();
+System.out.println("Enter your E-mail id:");
+String Email_id=sc.next();
+System.out.println("Enter your password");
+char[] passwordArray = System.console().readPassword();
+String password= new String(passwordArray);
+
+
+System.out.print("Confirm your password: ");
+        String confirmPassword = sc.next();
+
+         // Check if passwords match
+         if (password.equals(confirmPassword)) {
+            System.out.println("Password confirmed. You can proceed.");
+        } else {
+            System.out.println("Passwords do not match. Please try again.");
+            
+            System.exit(1);
+        }
+        
+        
+    
+        
+System.out.println("Select the language you wish to learn \n 1.JAPANESE\n 2.FRENCH\n 3.SPANISH");
+int language=sc.nextInt();
+while(true){
+System.out.println(" 1.lesson\n 2.Quizz\n 3.Exit");
+int choice=sc.nextInt();
+switch(choice){
+case 1:
+if(language==1){
+object.japaneselesson();
+}
+else if(language==2){
+object.frenchlesson();
+}
+else if(language==3){
+object.spanishlesson();
+}
+else{
+System.out.printf("wrong choice");
+}
+break;
+case 2:
+if(language==1){
+object.japanesequizz();
+}
+else if(language==2){
+object.frenchquizz();
+}
+else if(language==3){
+object.spanishquizz();
+}
+else{
+System.out.println("wrong choice");
+}
+break;
+case 3:
+System.out.println("Thanks for choosing AURA :)");
+System.exit(0);
+default:
+System.out.println("wrong choice");
+}
+}
+}
+}
